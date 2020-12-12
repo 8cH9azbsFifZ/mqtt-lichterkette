@@ -1,0 +1,11 @@
+[Unit]
+Description=PAC N90 MQTT service.
+After=network.target auditd.service
+
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/pac-n90
+
+[Install]
+WantedBy=multi-user.target
