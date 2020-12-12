@@ -12,11 +12,11 @@
 #endif
 
 #if !defined MQTT_TOPIC_ROOT
-#define MQTT_TOPIC_ROOT           "honeywell/"            // i.e. the name of the ac
+#define MQTT_TOPIC_ROOT           "voltronic/"            // i.e. the name of the ac
 #endif
 
 #if !defined FAN_NAME  
-#define FAN_NAME                  "Honeywell Fan"            // i.e. the name of the ac
+#define FAN_NAME                  "Voltronic Lichterkette"            // i.e. the name of the ac
 #endif
 
 // IR Pin on Raspi
@@ -58,17 +58,8 @@
 #define FAN_MID_NAME                  "Mid"
 #define FAN_HIGH_NAME                 "High"
 
-#define TIMER_30                      2
-#define TIMER_60                      3
-#define TIMER_120                     4
-#define TIMER_240                     5
-#define TIMER_NONE                    1
 
-#define TIMER_30_NAME                      "30"
-#define TIMER_60_NAME                      "60"
-#define TIMER_120_NAME                     "120"
-#define TIMER_240_NAME                     "240"
-#define TIMER_NONE_NAME                    "0"
+
 
 typedef struct {
   bool on;
@@ -112,94 +103,6 @@ int send_power(void)
 		sizeof(codes) / sizeof(int));
 	
 	return result;
-}
-
-
-
-int send_fan (void)
-{
-
-	uint32_t outPin = OUT_PIN;            // The Broadcom pin number the signal will be sent on
-	int frequency = 38000;          // The frequency of the IR signal in Hz
-	double dutyCycle = 0.5;         // The duty cycle of the IR signal. 0.5 means for every cycle,
-	                                // the LED will turn on for half the cycle time, and off the other half
-
-	int codes[] = { 1257 , 385 , 1296 , 384 , 457 , 1230 , 1290 , 386 , 1295 , 394 , 462 , 1235 , 460 , 1232 , 465 , 1230 , 461 , 1232 , 465 , 1232 , 1290 , 399 , 456 , 8018 , 1292 , 385 , 1294 , 382 , 465 , 1222 , 1295 , 388 , 1294 , 393 , 459 , 1238 , 459 , 1235 , 456 , 1239 , 455 , 1238 , 456 , 1234 , 1297 , 393 , 463 , 8054 , 1295 , 384 , 1293 , 383 , 459 , 1227 , 1294 , 385 , 1296 , 394 , 461 , 1231 , 463 , 1232 , 462 , 1235 , 461 , 1238 , 456 , 1232 , 1296 , 395 , 456 , 8033 , 1291 , 386 , 1295 , 381 , 465 , 1220 , 1298 , 384 , 1298 , 394 , 463 , 1230 , 465 , 1230 , 461 , 1231 , 463 , 1239 , 456 , 1231 , 1297 , 395 , 461 , 8025 , 1293 , 385 , 1291 , 385 , 464 , 1222 , 1296 , 387 , 1295 , 394 , 461 , 1238 , 458 , 1234 , 460 , 1234 , 460 , 1236 , 457 , 1236 , 1294 , 393 , 462 };
-
-	int result = irSlingRaw(
-		outPin,
-		frequency,
-		dutyCycle,
-		codes,
-		sizeof(codes) / sizeof(int));
-	
-	return result;
-
-}
-
-int send_turn(void)
-{
-  	uint32_t outPin = OUT_PIN;            // The Broadcom pin number the signal will be sent on
-	int frequency = 38000;          // The frequency of the IR signal in Hz
-	double dutyCycle = 0.5;         // The duty cycle of the IR signal. 0.5 means for every cycle,
-	                                // the LED will turn on for half the cycle time, and off the other half
-
-	int codes[] = { 1283 , 385 , 1297 , 385 , 455 , 1228 , 1292 , 390 , 1293 , 393 , 460 , 1236 , 467 , 1222 , 1297 , 396 , 455 , 1237 , 459 , 1236 , 462 , 1237 , 459 , 8008 , 1292 , 385 , 1295 , 380 , 462 , 1224 , 1297 , 384 , 1298 , 391 , 460 , 1236 , 458 , 1232 , 1296 , 393 , 461 , 1234 , 463 , 1231 , 463 , 1234 , 461 , 8044 , 1299 , 380 , 1296 , 384 , 460 , 1227 , 1292 , 388 , 1292 , 395 , 462 , 1234 , 458 , 1233 , 1298 , 391 , 461 , 1235 , 462 , 1233 , 463 , 1230 , 463 , 8018 , 1296 , 384 , 1293 , 383 , 463 , 1222 , 1299 , 382 , 1296 , 394 , 458 , 1235 , 463 , 1229 , 1295 , 396 , 463 , 1229 , 465 , 1229 , 463 , 1237 , 457 , 8024 , 1294 , 381 , 1296 , 384 , 458 , 1231 , 1291 , 389 , 1292 , 392 , 464 , 1230 , 462 , 1234 , 1296 , 394 , 458 , 1234 , 463 , 1233 , 461 , 1230 , 463 , 8014 , 1291 , 387 , 1291 , 383 , 460 , 1228 , 1291 , 390 , 1290 , 399 , 459 , 1238 , 454 , 1238 , 1291 , 397 , 453 , 1242 , 452 , 1242 , 454 , 1240 , 459 };
-
-
-	int result = irSlingRaw(
-		outPin,
-		frequency,
-		dutyCycle,
-		codes,
-		sizeof(codes) / sizeof(int));
-	
-	return result;
-
-
-
-}
-
-int send_wave (void)
-{
-  uint32_t outPin = OUT_PIN;            // The Broadcom pin number the signal will be sent on
-	int frequency = 38000;          // The frequency of the IR signal in Hz
-	double dutyCycle = 0.5;         // The duty cycle of the IR signal. 0.5 means for every cycle,
-	                                // the LED will turn on for half the cycle time, and off the other half
-
-	int codes[] = { 1283 , 384 , 1291 , 388 , 458 , 1227 , 1294 , 390 , 1291 , 394 , 463 , 1235 , 459 , 1235 , 456 , 1239 , 456 , 1236 , 1293 , 398 , 458 , 1237 , 458 , 7985 , 1294 , 386 , 1288 , 385 , 460 , 1227 , 1293 , 390 , 1291 , 400 , 457 , 1233 , 460 , 1237 , 458 , 1236 , 458 , 1237 , 1290 , 399 , 457 , 1236 , 459 , 8021 , 1293 , 386 , 1291 , 385 , 462 , 1225 , 1295 , 385 , 1293 , 397 , 458 , 1237 , 457 , 1236 , 458 , 1235 , 459 , 1238 , 1293 , 393 , 463 , 1233 , 459 , 7993 , 1295 , 386 , 1291 , 387 , 455 , 1228 , 1298 , 384 , 1294 , 397 , 456 , 1239 , 455 , 1236 , 459 , 1238 , 456 , 1232 , 1297 , 394 , 461 , 1234 , 461 , 7995 , 1299 , 379 , 1296 , 383 , 462 , 1223 , 1295 , 385 , 1297 , 394 , 461 , 1233 , 483 , 1210 , 463 , 1231 , 463 , 1231 , 1294 , 392 , 468 , 1227 , 462 , 7982 , 1298 , 378 , 1299 , 383 , 458 , 1229 , 1290 , 390 , 1293 , 392 , 462 , 1235 , 459 , 1237 , 457 , 1239 , 455 , 1233 , 1296 , 394 , 462 , 1231 , 462 , 8018 , 1299 , 385 , 1292 , 384 , 457 , 1228 , 1290 , 393 , 1290 , 396 , 459 , 1238 , 455 , 1238 , 458 , 1237 , 456 , 1236 , 1305 , 386 , 453 , 1242 , 455 };
-
-
-	int result = irSlingRaw(
-		outPin,
-		frequency,
-		dutyCycle,
-		codes,
-		sizeof(codes) / sizeof(int));
-	
-	return result;
-
-}
-
-
-int send_timer(void)
-{
-  uint32_t outPin = OUT_PIN;            // The Broadcom pin number the signal will be sent on
-	int frequency = 38000;          // The frequency of the IR signal in Hz
-	double dutyCycle = 0.5;         // The duty cycle of the IR signal. 0.5 means for every cycle,
-	                                // the LED will turn on for half the cycle time, and off the other half
-
-  int codes[] = {1293 , 381 , 1298 , 386 , 455 , 1232 , 1292 , 389 , 1303 , 394 , 458 , 1241 , 456 , 1235 , 459 , 1239 , 1294 , 395 , 461 , 1236 , 457 , 1237 , 460 , 7986 , 1295 , 387 , 1296 , 383 , 459 , 1233 , 1292 , 391 , 1293 , 397 , 459 , 1240 , 456 , 1237 , 459 , 1238 , 1300 , 397 , 458 , 1237 , 458 , 1240 , 460 , 8018 , 1305 , 391 , 1309 , 387 , 461 , 1230 , 1301 , 391 , 1298 , 399 , 460 , 1239 , 456 , 1242 , 458 , 1235 , 1301 , 400 , 457 , 1240 , 459 , 1243 , 457 , 7994 , 1301 , 387 , 1297 , 389 , 459 , 1225 , 1306 , 391 , 1299 , 397 , 459 , 1241 , 455 , 1238 , 459 , 1239 , 1298 , 396 , 460 , 1234 , 459 , 1240 , 459 , 8003 , 1294 , 391 , 1298 , 387 , 459 , 1228 , 1295 , 394 , 1296 , 396 , 459 , 1241 , 465 , 1228 , 457 , 1240 , 1296 , 400 , 460 , 1235 , 458 , 1241 , 456 , 7994 , 1294 , 391 , 1294 , 390 , 457 , 1228 , 1300 , 391 , 1295 , 401 , 459 , 1237 , 456 , 1241 , 458 , 1233 , 1297 , 401 , 458 , 1238 , 455 , 1241 , 460 };
-
-	int result = irSlingRaw(
-		outPin,
-		frequency,
-		dutyCycle,
-		codes,
-		sizeof(codes) / sizeof(int));
-	
-	return result;
-
 }
 
 
