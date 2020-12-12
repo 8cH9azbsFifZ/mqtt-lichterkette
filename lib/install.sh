@@ -25,7 +25,7 @@ make
 sudo make install
 
 
-# Install PAC remote control stuff
+# Install remote control stuff
 cd
 git clone https://github.com/8cH9azbsFifZ/mqtt-lichterkette.git
 cd mqtt-lichterkette
