@@ -20,5 +20,5 @@ sudo make install
 
 # Install PAC remote control stuff
 cd
-git clone https://github.com/8cH9azbsFifZ/pac-n90-raspi.git
-cd pac-n90-raspi
+git clone https://github.com/8cH9azbsFifZ/mqtt-lichterkette.git
+cd mqtt-lichterkette
