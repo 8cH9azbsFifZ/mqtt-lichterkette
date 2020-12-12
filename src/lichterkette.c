@@ -44,20 +44,16 @@
 #define UPDATE_INTERVAL               3       // Update MQTT every N seconds
 
 // Define modes
-#define WAVE_WOOD                     2
-#define WAVE_MOON                     3
-#define WAVE_NONE                     1
-#define WAVE_WOOD_NAME                "Wood"
-#define WAVE_MOON_NAME                "Moon"
-#define WAVE_NONE_NAME                "None"
+#define LK_VERSCHIEDEN                1 // "Verschiedene Kombinationen" (cf. doc/Netzteil.jpg)
+#define LK_AUFLEUCHTEN                2 // "Aufleuchten in Wellen"
+#define LK_SEQUENTIELL                3 // "Sequentielles Aufleuchten"
+#define LK_GLUEHEN                    4 // "Langsames Glühen"
+#define LK_BLITZEN                    5 // "Schnelles Aufblitzen"
+#define LK_AUSBLENDEN                 6 // "Langsames Ausblenden"
+#define LK_FUNKEL                     7 // "Funkelndes Aufblitzen"
+#define LK_DAUER                      8 // "Dauerhaftes Leuchten"
 
-#define FAN_LOW                       1
-#define FAN_MID                       2 
-#define FAN_HIGH                      3
-#define FAN_LOW_NAME                  "Low"
-#define FAN_MID_NAME                  "Mid"
-#define FAN_HIGH_NAME                 "High"
-
+// Helligkeit reduzieren / erhöhen
 
 
 
