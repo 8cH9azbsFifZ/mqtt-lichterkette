@@ -1,15 +1,5 @@
-# pac-n90-raspi
-IR remote control for DeLonghi PAC AirConditioners on Raspi with MQTT support for integration in homeautomation systems (i.e. OpenHAB).
-
-| Device Name   | Status        | Source      |
-| ------------- |:-------------:| ------------|
-| PAC N81       | Working       | pac-n90.c   |
-| PAC N90 Eco   | Working       | pac-n90.c   |
-| PAC NK76      | Not tested    | pac-n90.c   |  
-| Honeywell HO-5500RE | Working | honeywell.c |
-
-
-!["DeLonghi N90 ECO with MQTT remote control"][n90]
+# mqtt-lichterkette
+IR remote control for "Lichterkette" on Raspi with MQTT support for integration in homeautomation systems (i.e. OpenHAB).
 
 # Preparation of the Rasperry Pi
 - Prepare a Raspi W Zero 
@@ -48,26 +38,25 @@ dtoverlay=gpio-ir,gpio_pin=17
 dtoverlay=gpio-ir-tx,gpio_pin=18
 ```
 - Reboot the raspi
-- Run install script for preparation  `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/8cH9azbsFifZ/pac-n90-raspi/master/lib/install.sh)"` or clone this repo and run `./lib/install.sh`.
+- Run install script for preparation  `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/8cH9azbsFifZ/mqtt-lichterkette/master/lib/install.sh)"` or clone this repo and run `./lib/install.sh`.
 
 
 # Configuration of the software
 - Configure MQTT variables in the corresponding source file:
 ```
-vim src/pac-n90.c
+vim src/lichterkette.c
 
 #define MQTT_ADDRESS              "t20:1883"     
-#define MQTT_TOPIC_ROOT           "n90/"          
-#define PAC_NAME                  "DeLonghi PAC N90 Eco"        
+#define MQTT_TOPIC_ROOT           "lichterkette/"          
+#define PAC_NAME                  "Lichterkette 1"        
 ```
 
 - Build and install the software
 ```
-make pac-n90
-make honeywell
+make lichterkette
 make install
-sudo systemctl start  pac-n90
-sudo systemctl enable pac-n90
+sudo systemctl start  lichterkette
+sudo systemctl enable lichterkette
 ```
 
 # Reverse engineering a new remote
@@ -76,20 +65,17 @@ sudo systemctl enable pac-n90
 
 # Testing the installation
 ```
-mosquitto_pub -h t20 -t pac/toggle/power -m off
-mosquitto_sub -h t20 -t pac/power
-mosquitto_pub -h t20 -t pac/toggle/temperature -m 30
+mosquitto_pub -h t20 -t lichterkette/toggle/power -m off
+mosquitto_sub -h t20 -t lichterkette/power
 ```
 
 # Example configurations
 - Relevant fragments for configuration of OpenHAB are given in `examples`.
 
 ## References
+- [PAC N90 Remote](https://github.com/8cH9azbsFifZ/pac-n90-raspi)
 - [Excellent description how to build this repo](https://blog.bschwind.com/2016/05/29/sending-infrared-commands-from-a-raspberry-pi-without-lirc/)
 - [Bit masks for N90](https://github.com/zeroflow/ESPAircon)
 - [IR Slinger library](https://github.com/bschwind/ir-slinger)
 - [Bit masks for NK76](https://github.com/QuadrifoglioVerde/DL_PAC_NK76)
 - [Reverse Engineering of an air conditioning control](https://www.instructables.com/id/Reverse-engineering-of-an-Air-Conditioning-control/)
-
-[gpio]: https://raw.githubusercontent.com/8cH9azbsFifZ/pac-n90-raspi/master/doc/pi-gpio-768x576.png "Raspi GPIO Pins"
-[n90]: https://raw.githubusercontent.com/8cH9azbsFifZ/pac-n90-raspi/master/doc/n90.jpg "DeLonghi N90 ECO with MQTT remote control"
