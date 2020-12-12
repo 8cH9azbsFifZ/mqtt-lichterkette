@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# Enable IR Mode for PINS
+echo "Enable IR Mode for PINS by uncommenting the following lines in config.txt"
+sudo sed -i 's/\#dtoverlay=gpio-ir,gpio_pin=17/dtoverlay=gpio-ir,gpio_pin=17/g' /boot/config.txt
+sudo sed -i 's/\#dtoverlay=gpio-ir-tx,gpio_pin=18/dtoverlay=gpio-ir-tx,gpio_pin=18/g' /boot/config.txt
+
+# Upgrade Raspian
 sudo apt-get update
 sudo apt-get -y upgrade
 

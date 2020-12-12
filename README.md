@@ -29,16 +29,8 @@ ssh -lpi <your_ip>
 sudo su
 echo klima-raspi > /etc/hostname
 ```
-- Enable IR Mode for PINS by uncommenting the following lines:
-```
-apt-get install -y vim
-vim /boot/config.txt 
-
-dtoverlay=gpio-ir,gpio_pin=17
-dtoverlay=gpio-ir-tx,gpio_pin=18
-```
-- Reboot the raspi
 - Run install script for preparation  `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/8cH9azbsFifZ/mqtt-lichterkette/master/lib/install.sh)"` or clone this repo and run `./lib/install.sh`.
+- Reboot the raspi
 
 
 # Configuration of the software
