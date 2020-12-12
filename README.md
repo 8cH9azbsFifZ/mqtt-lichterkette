@@ -75,7 +75,5 @@ mosquitto_sub -h t20 -t lichterkette/power
 ## References
 - [PAC N90 Remote](https://github.com/8cH9azbsFifZ/pac-n90-raspi)
 - [Excellent description how to build this repo](https://blog.bschwind.com/2016/05/29/sending-infrared-commands-from-a-raspberry-pi-without-lirc/)
-- [Bit masks for N90](https://github.com/zeroflow/ESPAircon)
 - [IR Slinger library](https://github.com/bschwind/ir-slinger)
-- [Bit masks for NK76](https://github.com/QuadrifoglioVerde/DL_PAC_NK76)
 - [Reverse Engineering of an air conditioning control](https://www.instructables.com/id/Reverse-engineering-of-an-Air-Conditioning-control/)
